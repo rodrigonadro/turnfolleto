@@ -20,8 +20,8 @@ body{
 }
 .control-bar {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     padding: 14px 0px 0px 10px;
   /*  background: #000;*/
     color: white;
@@ -76,23 +76,70 @@ body{
 </div>
 
 <script type="text/javascript">
-	$(window).ready(function() {
-        const isMobile = window.innerWidth <= 768; // Define un punto de quiebre para considerar una pantalla "móvil"
+    function getMagazineSize() {
+        const viewportWidth = $(window).width();
+        const viewportHeight = $(window).height();
         
+        // Define un punto de quiebre para el diseño responsive
+        const isMobile = viewportWidth <= 768;
+        
+        let width = 0;
+        let height = 0;
+        let display = 'double';
+        
+        if (isMobile) {
+            // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
+            width = viewportWidth * 0.9;
+            height = (width / 2) * (752 / 1152); // Mantiene la relación de aspecto de las páginas
+            display = 'single';
+        } else {
+            // En modo de escritorio, ajusta el tamaño para que se adapte al viewport
+            width = viewportWidth * 0.8;
+            height = (width / 1152) * 752;
+            display = 'double';
+
+            // Si el alto es muy grande para la pantalla, recalcula con el alto
+            if (height > viewportHeight * 0.8) {
+                height = viewportHeight * 0.8;
+                width = (height / 752) * 1152;
+            }
+        }
+        
+        return {
+            width: width,
+            height: height,
+            display: display
+        };
+    }
+
+    function resizeMagazine() {
+        const newSize = getMagazineSize();
+        
+        $('#magazine').turn('size', newSize.width, newSize.height);
+        $('#magazine').turn('display', newSize.display);
+    }
+    
+    $(window).ready(function() {
+        // Inicializa el magazine con el tamaño correcto al cargar la página
+        const initialSize = getMagazineSize();
         $('#magazine').turn({
-            display: isMobile ? 'single' : 'double',
+            width: initialSize.width,
+            height: initialSize.height,
+            display: initialSize.display,
             acceleration: true,
             gradients: !$.isTouch,
-            elevation:50,
+            elevation: 50,
             when: {
                 turned: function(e, page) {
                     console.log('Current view: ', $(this).turn('view'));
-					console.log('Display ', $(this).turn('display'));
                 }
             }
         });
-		
-        const totalPages = $("#magazine").turn("pages");
+
+        // Vuelve a redimensionar el magazine cada vez que la ventana cambia de tamaño
+        $(window).bind('resize', function() {
+            resizeMagazine();
+        });
 
         $("#prev").on("click", function () {
             $("#magazine").turn("previous");
@@ -101,8 +148,9 @@ body{
         $("#next").on("click", function () {
             $("#magazine").turn("next");
         });
-        
+
         $(window).bind('keydown', function(e){
+            const totalPages = $("#magazine").turn("pages");
             switch (e.key) {
                 case "ArrowLeft":   
                     $("#magazine").turn("previous");
@@ -119,7 +167,6 @@ body{
             }
         });
     });
-
 </script>
 
 </body>
