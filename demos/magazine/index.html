@@ -87,10 +87,11 @@ body{
             when: {
                 turned: function(e, page) {
                     console.log('Current view: ', $(this).turn('view'));
+					console.log('Display ', $(this).turn('display'));
                 }
             }
         });
-
+		
         const totalPages = $("#magazine").turn("pages");
 
         $("#prev").on("click", function () {
