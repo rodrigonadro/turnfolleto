@@ -76,45 +76,48 @@ body{
 </div>
 
 <script type="text/javascript">
-	const totalPages = $("#magazine").turn("pages");
 	$(window).ready(function() {
-		$('#magazine').turn({
-							display: 'double',
-							acceleration: true,
-							gradients: !$.isTouch,
-							elevation:50,
-							when: {
-								turned: function(e, page) {
-								console.log('Current view: ', $(this).turn('view'));
-								}
-							}
-						});
-	});
-	
-	$("#prev").on("click", function () {
-                $("#magazine").turn("previous");
-            });
-	$("#next").on("click", function () {
-		$("#magazine").turn("next");
-	});
-	
-	$(window).bind('keydown', function(e){
-		switch (e.key) {
-                    case "ArrowLeft":   
-                        $("#magazine").turn("previous");
-                        break;
-                    case "ArrowRight": 
-                        $("#magazine").turn("next");
-                        break;
-                    case "Home":       
-                        $("#magazine").turn("page", 1);
-                        break;
-                    case "End":         
-                        $("#magazine").turn("page", totalPages);
-                        break;
+        const isMobile = window.innerWidth <= 768; // Define un punto de quiebre para considerar una pantalla "móvil"
+        
+        $('#magazine').turn({
+            display: isMobile ? 'single' : 'double',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation:50,
+            when: {
+                turned: function(e, page) {
+                    console.log('Current view: ', $(this).turn('view'));
                 }
-		
-	});
+            }
+        });
+
+        const totalPages = $("#magazine").turn("pages");
+
+        $("#prev").on("click", function () {
+            $("#magazine").turn("previous");
+        });
+
+        $("#next").on("click", function () {
+            $("#magazine").turn("next");
+        });
+        
+        $(window).bind('keydown', function(e){
+            switch (e.key) {
+                case "ArrowLeft":   
+                    $("#magazine").turn("previous");
+                    break;
+                case "ArrowRight": 
+                    $("#magazine").turn("next");
+                    break;
+                case "Home":       
+                    $("#magazine").turn("page", 1);
+                    break;
+                case "End":         
+                    $("#magazine").turn("page", totalPages);
+                    break;
+            }
+        });
+    });
 
 </script>
 
