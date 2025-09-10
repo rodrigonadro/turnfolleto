@@ -28,7 +28,10 @@ body{
 	<div style="background-image:url(pages/05.jpg);"></div>
 	<div style="background-image:url(pages/06.jpg);"></div>
 </div>
-
+<div class="control-bar">
+            <button id="prev">&#8592;</button>			
+            <button id="next">&#8594;</button>
+</div>
 
 <script type="text/javascript">
 
@@ -55,6 +58,12 @@ body{
 			$('#magazine').turn('next');
 			
 	});
+	$("#prev").on("click", function () {
+                $("#magazine").turn("previous");
+            });
+            $("#next").on("click", function () {
+                $("#magazine").turn("next");
+            });
 
 </script>
 

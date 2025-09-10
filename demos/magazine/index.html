@@ -18,23 +18,65 @@ body{
 	background-color:#ccc;
 	background-size:100% 100%;
 }
+.control-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 0px 0px 10px;
+  /*  background: #000;*/
+    color: white;
+    font-size: 16px;
+    /*border-top: 2px solid #333;*/
+}
+
+.control-bar button {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+.control-bar button:hover {
+    background: #555;
+}
+
 </style>
 </head>
 <body>
-
 <div id="magazine">
-	<div style="background-image:url('https://rodrigonadro.github.io/turnfolleto/demos/magazine/pages/2025-1.jpg');"></div>
-	<div style="background-image:url(pages/2025-2.jpg);"></div>
-	<div style="background-image:url(pages/2025-3.jpg);"></div>
-	<div style="background-image:url(pages/2025-4.jpg);"></div>
-	<div style="background-image:url(pages/2025-5.jpg);"></div>
-	<div style="background-image:url(pages/2025-6.jpg);"></div>
-	<div style="background-image:url(pages/2025-6.jpg);"></div>
+	<div style="background-image:url(page_1.jpg);"></div>
+	<div style="background-image:url(page_2.jpg);"></div>
+	<div style="background-image:url(page_3.jpg);"></div>
+	<div style="background-image:url(page_4.jpg);"></div>
+	<div style="background-image:url(page_5.jpg);"></div>
+	<div style="background-image:url(page_6.jpg);"></div>
+	<div style="background-image:url(page_7.jpg);"></div>
+	<div style="background-image:url(page_8.jpg);"></div>
+	<div style="background-image:url(page_9.jpg);"></div>
+	<div style="background-image:url(page_10.jpg);"></div>
+	<div style="background-image:url(page_11.jpg);"></div>
+	<div style="background-image:url(page_12.jpg);"></div>
+	<div style="background-image:url(page_13.jpg);"></div>
+	<div style="background-image:url(page_14.jpg);"></div>
+	<div style="background-image:url(page_15.jpg);"></div>
+	<div style="background-image:url(page_16.jpg);"></div>
+	<div style="background-image:url(page_17.jpg);"></div>
+	<div style="background-image:url(page_18.jpg);"></div>
+	<div style="background-image:url(page_19.jpg);"></div>
+	<div style="background-image:url(page_20.jpg);"></div>
 </div>
 
+<div class="control-bar">
+            <button id="prev">&#8592;</button>			
+            <button id="next">&#8594;</button>
+</div>
 
 <script type="text/javascript">
-
+	const totalPages = $("#magazine").turn("pages");
 	$(window).ready(function() {
 		$('#magazine').turn({
 							display: 'double',
@@ -43,20 +85,35 @@ body{
 							elevation:50,
 							when: {
 								turned: function(e, page) {
-									/*console.log('Current view: ', $(this).turn('view'));*/
+								console.log('Current view: ', $(this).turn('view'));
 								}
 							}
 						});
 	});
 	
+	$("#prev").on("click", function () {
+                $("#magazine").turn("previous");
+            });
+	$("#next").on("click", function () {
+		$("#magazine").turn("next");
+	});
 	
 	$(window).bind('keydown', function(e){
+		switch (e.key) {
+                    case "ArrowLeft":   
+                        $("#magazine").turn("previous");
+                        break;
+                    case "ArrowRight": 
+                        $("#magazine").turn("next");
+                        break;
+                    case "Home":       
+                        $("#magazine").turn("page", 1);
+                        break;
+                    case "End":         
+                        $("#magazine").turn("page", totalPages);
+                        break;
+                }
 		
-		if (e.keyCode==37)
-			$('#magazine').turn('previous');
-		else if (e.keyCode==39)
-			$('#magazine').turn('next');
-			
 	});
 
 </script>
