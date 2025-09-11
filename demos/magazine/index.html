@@ -1,173 +1,146 @@
-<!doctype html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type" />
-<script type="text/javascript" src="../../jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="../../turn.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="turn.js"></script>
+    <link id="favicon" rel="shortcut icon" href="farmatodo.png">
+    <link rel="icon" href="farmatodo.png" >
+	<link rel="apple-touch-icon" href="farmatodo.png">
+    <title>Promociones Farmatodo</title>
 
-<style type="text/css">
-body{
-	background:#ccc;
-}
-#magazine{
-	width:1152px;
-	height:752px;
-}
-#magazine .turn-page{
-	background-color:#ccc;
-	background-size:100% 100%;
-}
-.control-bar {
-    display: flex;
-    justify-content: left;
-    align-items: left;
-    padding: 14px 0px 0px 10px;
-  /*  background: #000;*/
-    color: white;
-    font-size: 16px;
-    /*border-top: 2px solid #333;*/
-}
-
-.control-bar button {
-    background: #222;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background 0.3s;
-}
-
-.control-bar button:hover {
-    background: #555;
-}
-
-</style>
 </head>
+
 <body>
-<div id="magazine">
-	<div style="background-image:url(page_1.jpg);"></div>
-	<div style="background-image:url(page_2.jpg);"></div>
-	<div style="background-image:url(page_3.jpg);"></div>
-	<div style="background-image:url(page_4.jpg);"></div>
-	<div style="background-image:url(page_5.jpg);"></div>
-	<div style="background-image:url(page_6.jpg);"></div>
-	<div style="background-image:url(page_7.jpg);"></div>
-	<div style="background-image:url(page_8.jpg);"></div>
-	<div style="background-image:url(page_9.jpg);"></div>
-	<div style="background-image:url(page_10.jpg);"></div>
-	<div style="background-image:url(page_11.jpg);"></div>
-	<div style="background-image:url(page_12.jpg);"></div>
-	<div style="background-image:url(page_13.jpg);"></div>
-	<div style="background-image:url(page_14.jpg);"></div>
-	<div style="background-image:url(page_15.jpg);"></div>
-	<div style="background-image:url(page_16.jpg);"></div>
-	<div style="background-image:url(page_17.jpg);"></div>
-	<div style="background-image:url(page_18.jpg);"></div>
-	<div style="background-image:url(page_19.jpg);"></div>
-	<div style="background-image:url(page_20.jpg);"></div>
-</div>
+    <div class="flipbook">
+        <div class=""><img src="Page_1.jpg" alt="Página 1"></div>
+        <div class=""><img src="Page_2.jpg" alt="Página 2"></div>
+        <div class=""><img src="Page_3.jpg" alt="Página 3"></div>
+        <div class=""><img src="Page_4.jpg" alt="Página 4"></div>
+        <div class=""><img src="Page_5.jpg" alt="Página 5"></div>
+        <div class=""><img src="Page_6.jpg" alt="Página 6"></div>
+        <div class=""><img src="Page_7.jpg" alt="Página 7"></div>
+        <div class=""><img src="Page_8.jpg" alt="Página 8"></div>
+        <div class=""><img src="Page_9.jpg" alt="Página 9"></div>
+        <div class=""><img src="Page_10.jpg" alt="Página 10"></div>
+        <div class=""><img src="Page_11.jpg" alt="Página 11"></div>
+        <div class=""><img src="Page_12.jpg" alt="Página 12"></div>
+        <div class=""><img src="Page_13.jpg" alt="Página 13"></div>
+        <div class=""><img src="Page_14.jpg" alt="Página 14"></div>
+        <div class=""><img src="Page_15.jpg" alt="Página 15"></div>
+        <div class=""><img src="Page_16.jpg" alt="Página 16"></div>
+        <div class=""><img src="Page_17.jpg" alt="Página 17"></div>
+        <div class=""><img src="Page_18.jpg" alt="Página 18"></div>
+        <div class=""><img src="Page_19.jpg" alt="Página 19"></div>
+        <div class=""><img src="Page_20.jpg" alt="Página 20"></div>
+    </div>
+    <div class="control-bar">
+        <button id="prev">&#8592;</button>
+        <!--button id="fullscreen">⛶</button-->
+        <button id="next">&#8594;</button>
 
-<div class="control-bar">
-            <button id="prev">&#8592;</button>			
-            <button id="next">&#8594;</button>
-</div>
+    </div>
 
-<script type="text/javascript">
-    function getMagazineSize() {
-        const viewportWidth = $(window).width();
-        const viewportHeight = $(window).height();
-        
-        // Define un punto de quiebre para el diseño responsive
-        const isMobile = viewportWidth <= 768;
-        
-        let width = 0;
-        let height = 0;
-        let display = 'double';
-        
-        if (isMobile) {
-            // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
-            width = viewportWidth * 0.9;
-            height = (width) * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
-            display = 'single';
-        } else {
-            // En modo de escritorio, ajusta el tamaño para que se adapte al viewport
-            width = viewportWidth * 0.8;
-            height = (width / 1152) * 752;
-            display = 'double';
 
-            // Si el alto es muy grande para la pantalla, recalcula con el alto
-            if (height > viewportHeight * 0.8) {
-                height = viewportHeight * 0.8;
-                width = (height / 752) * 1152;
-            }
-        }
-        
-        return {
-            width: width,
-            height: height,
-            display: display
-        };
-    }
+    <script>
 
-    function resizeMagazine() {
-        const newSize = getMagazineSize();
-        
-        $('#magazine').turn('size', newSize.width, newSize.height);
-        $('#magazine').turn('display', newSize.display);
-    }
-    
-    $(window).ready(function() {
-        // Inicializa el magazine con el tamaño correcto al cargar la página
-        const initialSize = getMagazineSize();
-        $('#magazine').turn({
-            width: initialSize.width,
-            height: initialSize.height,
-            display: initialSize.display,
-            acceleration: true,
-            gradients: !$.isTouch,
-            elevation: 50,
-            when: {
-                turned: function(e, page) {
-                    console.log('Current view: ', $(this).turn('view'));
+        function getMagazineSize() {
+            const viewportWidth = $(window).width();
+            const viewportHeight = $(window).height();
+
+            // Define un punto de quiebre para el diseño responsive
+            const isMobile = viewportWidth <= 768;
+
+            let width = 0;
+            let height = 0;
+            let display = 'double';
+
+            if (isMobile) {
+                // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
+                width = viewportWidth * 0.9;
+                height = (width) + 300 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
+                display = 'single';
+            } else {
+                // En modo de escritorio, ajusta el tamaño para que se adapte al viewport
+                width = viewportWidth * 0.8;
+                height = (width / 1152) * 752;
+                display = 'double';
+
+                // Si el alto es muy grande para la pantalla, recalcula con el alto
+                if (height > viewportHeight * 0.8) {
+                    height = viewportHeight * 0.8;
+                    width = (height / 752) * 1152;
                 }
             }
+
+            return {
+                width: width,
+                height: height,
+                display: display
+            };
+        }
+
+        function resizeMagazine() {
+            const newSize = getMagazineSize();
+
+            $('.flipbook').turn('size', newSize.width, newSize.height);
+            $('.flipbook').turn('display', newSize.display);
+        }
+
+        $(window).ready(function () {
+            // Inicializa el magazine con el tamaño correcto al cargar la página
+            const initialSize = getMagazineSize();
+            $('.flipbook').turn({
+                autoCenter: true,
+                duration: 900,
+                width: initialSize.width,
+                height: initialSize.height,
+                display: initialSize.display,
+            });
+
+            // Vuelve a redimensionar el magazine cada vez que la ventana cambia de tamaño
+            $(window).bind('resize', function () {
+                resizeMagazine();
+            });
+
+            $("#prev").on("click", function () {
+                $(".flipbook").turn("previous");
+            });
+
+            $("#next").on("click", function () {
+                $(".flipbook").turn("next");
+            });
+
+            const totalPages = $(".flipbook").turn("pages");
+
+            $("#page-info").text("1 / " + totalPages);
+
+            $(".flipbook").bind("turned", function (event, page) {
+                $("#page-info").text(page + " / " + totalPages);
+            });
+
+            $(window).bind('keydown', function (e) {
+                const totalPages = $(".flipbook").turn("pages");
+                switch (e.key) {
+                    case "ArrowLeft":
+                        $(".flipbook").turn("previous");
+                        break;
+                    case "ArrowRight":
+                        $(".flipbook").turn("next");
+                        break;
+                    case "Home":
+                        $(".flipbook").turn("page", 1);
+                        break;
+                    case "End":
+                        $(".flipbook").turn("page", totalPages);
+                        break;
+                }
+            });
         });
 
-        // Vuelve a redimensionar el magazine cada vez que la ventana cambia de tamaño
-        $(window).bind('resize', function() {
-            resizeMagazine();
-        });
-
-        $("#prev").on("click", function () {
-            $("#magazine").turn("previous");
-        });
-
-        $("#next").on("click", function () {
-            $("#magazine").turn("next");
-        });
-
-        $(window).bind('keydown', function(e){
-            const totalPages = $("#magazine").turn("pages");
-            switch (e.key) {
-                case "ArrowLeft":   
-                    $("#magazine").turn("previous");
-                    break;
-                case "ArrowRight": 
-                    $("#magazine").turn("next");
-                    break;
-                case "Home":       
-                    $("#magazine").turn("page", 1);
-                    break;
-                case "End":         
-                    $("#magazine").turn("page", totalPages);
-                    break;
-            }
-        });
-    });
-</script>
-
+    </script>
 </body>
+
 </html>
