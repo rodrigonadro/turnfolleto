@@ -15,7 +15,25 @@
 
 <body>
 
-    <div class="container">
+    <div class="container"> 
+        <div id="divDeslizar" style="width: 100%;background-color: aqua;">
+            <div class="neon-pulse" style="
+                padding: 1px;
+                border-radius: 10px;
+                position: relative;
+                border: 2px solid #5fb230;
+                background-color: #5fb230;
+                z-index: 1000;
+                width: 160px;
+                margin-right: 0px;
+                float: right;
+                margin-bottom: 10px;">
+                <label class="lblIndicador" style="font-size: 9px; padding-left: 5px;float: left; margin-top: 5px;">Desliza para descubrir más </label>
+                <img src="deslizar.png" style="padding: 5px;width: 22px; float: right;" >
+            </div>
+        </div>
+
+        <div>       
         <div class="flipbook">
             <div class=""><img src="page_1.jpg" alt="Página 1"></div>
             <div class=""><img src="page_2.jpg" alt="Página 2"></div>
@@ -37,7 +55,11 @@
             <div class=""><img src="page_18.jpg" alt="Página 18"></div>
             <div class=""><img src="page_19.jpg" alt="Página 19"></div>
             <div class=""><img src="page_20.jpg" alt="Página 20"></div>
-        </div> 
+
+            <button id="prev" class="prev-btn">&#8249;</button>
+            <button id="next" class="next-btn">&#8250;</button>
+        </div>
+        
         <div class="controls">
             <button id="prev" class="prev-btn">&#8249;</button>
             <button id="next" class="next-btn">&#8250;</button>
@@ -48,12 +70,26 @@
 
     <script>
 
+        var isMobile = 0;
+        var tamamowidth = 0
+        var tamanoheight = 0;
+        var esWeb = false;
+        var Paginas1 = 0;
+        var Paginas2 = 0;
+
+
         function getMagazineSize() {
             const viewportWidth = $(window).width();
             const viewportHeight = $(window).height();
 
+            const prevBtn = document.getElementById("prev");
+            const nextBtn = document.getElementById("next");
+
+            tamamowidth = viewportWidth;
+
+
             // Define un punto de quiebre para el diseño responsive
-            const isMobile = viewportWidth <= 768;
+            isMobile = viewportWidth <= 768;
 
             let width = 0;
             let height = 0;
@@ -61,14 +97,16 @@
 
             if (isMobile) {
                 // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
-                width = viewportWidth * 0.9;
-                height = (width) + 300 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
+                width = viewportWidth * 0.7;
+                height = (width) + 200 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
                 display = 'single';
+                esWeb = false;
             } else {
                 // En modo de escritorio, ajusta el tamaño para que se adapte al viewport
-                width = viewportWidth * 0.8;
-                height = (width / 1152) * 752;
+                 width = viewportWidth * 0.8;
+                 height = (width / 1152) * 752;
                 display = 'double';
+                esWeb = true;
 
                 // Si el alto es muy grande para la pantalla, recalcula con el alto
                 if (height > viewportHeight * 0.8) {
@@ -89,26 +127,161 @@
 
             $('.flipbook').turn('size', newSize.width, newSize.height);
             $('.flipbook').turn('display', newSize.display);
+          
         }
 
         $(window).ready(function () {
+
+            
             // Inicializa el magazine con el tamaño correcto al cargar la página
             const initialSize = getMagazineSize();
+            
+        
             $('.flipbook').turn({
                 autoCenter: true,
                 duration: 900,
                 width: initialSize.width,
                 height: initialSize.height,
-                display: initialSize.display,
+                display: initialSize.display,         
+                when: {
+                turned: function(e, page) {
+                    
+                    console.log('Current view: ', $(this).turn('view'));
+
+                    Paginas1 = $(this).turn('view')[0];
+                    Paginas2 = $(this).turn('view')[1];
+
+                    ValidarWebRezise();
+                }
+                  
+                }
             });
 
+            function ValidarWebRezise(){
+                
+                    var element = document.getElementById('prev');
+                    var element1 = document.getElementById('next');
+                    
+                    if(esWeb){  
+                        element.style.removeProperty('left') ;
+                        element1.style.removeProperty('right') ;
+
+                        if(Paginas1 == 0 && Paginas2 == 1){  
+
+                             if(tamamowidth >= 700 && tamamowidth <= 768){
+                                 element1.style.right = "5%"; 
+                                element.style.left = "10%";
+                            }
+                         
+                            if(tamamowidth >= 768 && tamamowidth <= 1000){
+                                 element1.style.right = "11%"; 
+                                element.style.left = "35%";
+                            }
+
+                            if(tamamowidth >= 1000 && tamamowidth <= 1450){
+                                  element1.style.right = "13%"; 
+                                element.style.left = "36%"; 
+                            }
+
+                            if(tamamowidth >= 1450 && tamamowidth <= 1700){
+                                  element1.style.right = "15%"; 
+                                element.style.left = "37%"; 
+                            }
+                            if(tamamowidth >= 1700 && tamamowidth <= 1900){
+                                element1.style.right = "15%"; 
+                                element.style.left = "37%"; 
+                            }
+
+                            if(tamamowidth >= 1900 && tamamowidth <= 2050){
+                                element1.style.right = "18%"; 
+                                element.style.left = "38%"; 
+                            }
+
+                             if(tamamowidth >= 2050 && tamamowidth <= 2300){
+                                element1.style.right = "20%"; 
+                                element.style.left = "39%"; 
+                            }
+
+                            if(tamamowidth >= 2300 && tamamowidth <= 2500){
+                                element1.style.right = "23%"; 
+                                element.style.left = "40%"; 
+                            }
+                            if(tamamowidth >= 2500 && tamamowidth <= 3000){
+                                element1.style.right = "25%";   
+                                element.style.left = "41%"; 
+                            }
+
+                            if(tamamowidth >= 3000 && tamamowidth <= 8000){
+                                element1.style.right = "25%";   
+                                element.style.left = "41%"; 
+                            }
+
+
+                        }                        
+                        else{
+                         
+                         if(tamamowidth >= 700 && tamamowidth <= 768){
+                                 element1.style.right = "5%"; 
+                                element.style.left = "10%";
+                            }
+                         
+                            if(tamamowidth >= 768 && tamamowidth <= 1000){
+                                 element1.style.right = "2%"; 
+                                element.style.left = "5%";
+                            }
+
+                            if(tamamowidth >= 1000 && tamamowidth <= 1450){//l
+                                  element1.style.right = "3%"; 
+                                element.style.left = "6%"; 
+                            }
+
+                            if(tamamowidth > 1450 && tamamowidth <= 1850){//2
+                                  element1.style.right = "5%"; 
+                                element.style.left = "7%"; 
+                            }
+                            if(tamamowidth >= 1850 && tamamowidth <= 2000){//3
+                                element1.style.right = "7%"; 
+                                element.style.left = "9%"; 
+                            }
+
+                            /*if(tamamowidth >= 1900 && tamamowidth <= 2050){
+                                element1.style.right = "8%"; 
+                                element.style.left = "8%"; 
+                            }*/
+
+                             if(tamamowidth >= 2000 && tamamowidth <= 2250){//4
+                                element1.style.right = "10%"; 
+                                element.style.left = "12%"; 
+                            }
+
+                            if(tamamowidth >= 2250 && tamamowidth <= 2450){//5
+                              element1.style.right = "14%"; 
+                                element.style.left = "16%"; 
+                            }
+                            if(tamamowidth >= 2450 && tamamowidth <= 2950){
+                                element1.style.right = "17%";   
+                                element.style.left = "19%"; 
+                            }
+
+                            if(tamamowidth >= 2950 && tamamowidth <= 8000){
+                                element1.style.right = "18%";   
+                                element.style.left = "19%"; 
+                            }                       
+                             
+                        }
+                    }
+
+            }
+
             // Vuelve a redimensionar el magazine cada vez que la ventana cambia de tamaño
-            $(window).bind('resize', function () {
+            $(window).bind('resize', function () {  
+                ValidarWebRezise();          
                 resizeMagazine();
             });
 
             $("#prev").on("click", function () {
                 $(".flipbook").turn("previous");
+                console.log(isMobile);
             });
 
             $("#next").on("click", function () {
