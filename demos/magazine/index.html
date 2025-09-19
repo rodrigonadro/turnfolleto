@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style2.css" />
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="turn.js"></script>
     <link id="favicon" rel="shortcut icon" href="farmatodo.png">
@@ -35,29 +35,27 @@
 
         <div>       
         <div class="flipbook">
-            <div class=""><img src="page_1.jpg" alt="Página 1"></div>
-            <div class=""><img src="page_2.jpg" alt="Página 2"></div>
-            <div class=""><img src="page_3.jpg" alt="Página 3"></div>
-            <div class=""><img src="page_4.jpg" alt="Página 4"></div>
-            <div class=""><img src="page_5.jpg" alt="Página 5"></div>
-            <div class=""><img src="page_6.jpg" alt="Página 6"></div>
-            <div class=""><img src="page_7.jpg" alt="Página 7"></div>
-            <div class=""><img src="page_8.jpg" alt="Página 8"></div>
-            <div class=""><img src="page_9.jpg" alt="Página 9"></div>
-            <div class=""><img src="page_10.jpg" alt="Página 10"></div>
-            <div class=""><img src="page_11.jpg" alt="Página 11"></div>
-            <div class=""><img src="page_12.jpg" alt="Página 12"></div>
-            <div class=""><img src="page_13.jpg" alt="Página 13"></div>
-            <div class=""><img src="page_14.jpg" alt="Página 14"></div>
-            <div class=""><img src="page_15.jpg" alt="Página 15"></div>
-            <div class=""><img src="page_16.jpg" alt="Página 16"></div>
-            <div class=""><img src="page_17.jpg" alt="Página 17"></div>
-            <div class=""><img src="page_18.jpg" alt="Página 18"></div>
-            <div class=""><img src="page_19.jpg" alt="Página 19"></div>
-            <div class=""><img src="page_20.jpg" alt="Página 20"></div>
+            <div class=""><img src="Page_1.jpg" alt="Página 1"></div>
+            <div class=""><img src="Page_2.jpg" alt="Página 2"></div>
+            <div class=""><img src="Page_3.jpg" alt="Página 3"></div>
+            <div class=""><img src="Page_4.jpg" alt="Página 4"></div>
+            <div class=""><img src="Page_5.jpg" alt="Página 5"></div>
+            <div class=""><img src="Page_6.jpg" alt="Página 6"></div>
+            <div class=""><img src="Page_7.jpg" alt="Página 7"></div>
+            <div class=""><img src="Page_8.jpg" alt="Página 8"></div>
+            <div class=""><img src="Page_9.jpg" alt="Página 9"></div>
+            <div class=""><img src="Page_10.jpg" alt="Página 10"></div>
+            <div class=""><img src="Page_11.jpg" alt="Página 11"></div>
+            <div class=""><img src="Page_12.jpg" alt="Página 12"></div>
+            <div class=""><img src="Page_13.jpg" alt="Página 13"></div>
+            <div class=""><img src="Page_14.jpg" alt="Página 14"></div>
+            <div class=""><img src="Page_15.jpg" alt="Página 15"></div>
+            <div class=""><img src="Page_16.jpg" alt="Página 16"></div>
+            <div class=""><img src="Page_17.jpg" alt="Página 17"></div>
+            <div class=""><img src="Page_18.jpg" alt="Página 18"></div>
+            <div class=""><img src="Page_19.jpg" alt="Página 19"></div>
+            <div class=""><img src="Page_20.jpg" alt="Página 20"></div>
 
-            <button id="prev" class="prev-btn">&#8249;</button>
-            <button id="next" class="next-btn">&#8250;</button>
         </div>
         
         <div class="controls">
@@ -71,9 +69,6 @@
     <script>
 
         var isMobile = 0;
-        var tamamowidth = 0
-        var tamanoheight = 0;
-        var esWeb = false;
         var Paginas1 = 0;
         var Paginas2 = 0;
 
@@ -81,12 +76,6 @@
         function getMagazineSize() {
             const viewportWidth = $(window).width();
             const viewportHeight = $(window).height();
-
-            const prevBtn = document.getElementById("prev");
-            const nextBtn = document.getElementById("next");
-
-            tamamowidth = viewportWidth;
-
 
             // Define un punto de quiebre para el diseño responsive
             isMobile = viewportWidth <= 768;
@@ -98,7 +87,7 @@
             if (isMobile) {
                 // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
                 width = viewportWidth * 0.7;
-                height = (width) + 200 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
+                height = (width) + 250 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
                 display = 'single';
                 esWeb = false;
             } else {
@@ -145,137 +134,33 @@
                 display: initialSize.display,         
                 when: {
                 turned: function(e, page) {
-                    
+                    debugger;
                     console.log('Current view: ', $(this).turn('view'));
 
                     Paginas1 = $(this).turn('view')[0];
                     Paginas2 = $(this).turn('view')[1];
 
-                    ValidarWebRezise();
+                    if (Paginas1 == 0 || Paginas1 == 1 ){
+                       document.getElementById('prev').style.visibility='hidden';
+                    }
+                    else
+                      document.getElementById('prev').style.visibility='visible';
+
+                    if (Paginas1 == 20){
+                       document.getElementById('next').style.visibility='hidden';
+                    }
+                    else
+                      document.getElementById('next').style.visibility='visible';
+
                 }
                   
                 }
             });
 
-            function ValidarWebRezise(){
-                
-                    var element = document.getElementById('prev');
-                    var element1 = document.getElementById('next');
-                    
-                    if(esWeb){  
-                        element.style.removeProperty('left') ;
-                        element1.style.removeProperty('right') ;
-
-                        if(Paginas1 == 0 && Paginas2 == 1){  
-
-                             if(tamamowidth >= 700 && tamamowidth <= 768){
-                                 element1.style.right = "5%"; 
-                                element.style.left = "10%";
-                            }
-                         
-                            if(tamamowidth >= 768 && tamamowidth <= 1000){
-                                 element1.style.right = "11%"; 
-                                element.style.left = "35%";
-                            }
-
-                            if(tamamowidth >= 1000 && tamamowidth <= 1450){
-                                  element1.style.right = "13%"; 
-                                element.style.left = "36%"; 
-                            }
-
-                            if(tamamowidth >= 1450 && tamamowidth <= 1700){
-                                  element1.style.right = "15%"; 
-                                element.style.left = "37%"; 
-                            }
-                            if(tamamowidth >= 1700 && tamamowidth <= 1900){
-                                element1.style.right = "15%"; 
-                                element.style.left = "37%"; 
-                            }
-
-                            if(tamamowidth >= 1900 && tamamowidth <= 2050){
-                                element1.style.right = "18%"; 
-                                element.style.left = "38%"; 
-                            }
-
-                             if(tamamowidth >= 2050 && tamamowidth <= 2300){
-                                element1.style.right = "20%"; 
-                                element.style.left = "39%"; 
-                            }
-
-                            if(tamamowidth >= 2300 && tamamowidth <= 2500){
-                                element1.style.right = "23%"; 
-                                element.style.left = "40%"; 
-                            }
-                            if(tamamowidth >= 2500 && tamamowidth <= 3000){
-                                element1.style.right = "25%";   
-                                element.style.left = "41%"; 
-                            }
-
-                            if(tamamowidth >= 3000 && tamamowidth <= 8000){
-                                element1.style.right = "25%";   
-                                element.style.left = "41%"; 
-                            }
-
-
-                        }                        
-                        else{
-                         
-                         if(tamamowidth >= 700 && tamamowidth <= 768){
-                                 element1.style.right = "5%"; 
-                                element.style.left = "10%";
-                            }
-                         
-                            if(tamamowidth >= 768 && tamamowidth <= 1000){
-                                 element1.style.right = "2%"; 
-                                element.style.left = "5%";
-                            }
-
-                            if(tamamowidth >= 1000 && tamamowidth <= 1450){//l
-                                  element1.style.right = "3%"; 
-                                element.style.left = "6%"; 
-                            }
-
-                            if(tamamowidth > 1450 && tamamowidth <= 1850){//2
-                                  element1.style.right = "5%"; 
-                                element.style.left = "7%"; 
-                            }
-                            if(tamamowidth >= 1850 && tamamowidth <= 2000){//3
-                                element1.style.right = "7%"; 
-                                element.style.left = "9%"; 
-                            }
-
-                            /*if(tamamowidth >= 1900 && tamamowidth <= 2050){
-                                element1.style.right = "8%"; 
-                                element.style.left = "8%"; 
-                            }*/
-
-                             if(tamamowidth >= 2000 && tamamowidth <= 2250){//4
-                                element1.style.right = "10%"; 
-                                element.style.left = "12%"; 
-                            }
-
-                            if(tamamowidth >= 2250 && tamamowidth <= 2450){//5
-                              element1.style.right = "14%"; 
-                                element.style.left = "16%"; 
-                            }
-                            if(tamamowidth >= 2450 && tamamowidth <= 2950){
-                                element1.style.right = "17%";   
-                                element.style.left = "19%"; 
-                            }
-
-                            if(tamamowidth >= 2950 && tamamowidth <= 8000){
-                                element1.style.right = "18%";   
-                                element.style.left = "19%"; 
-                            }                       
-                             
-                        }
-                    }
-
-            }
+         
 
             // Vuelve a redimensionar el magazine cada vez que la ventana cambia de tamaño
-            $(window).bind('resize', function () {  
-                ValidarWebRezise();          
+            $(window).bind('resize', function () {           
                 resizeMagazine();
             });
 
