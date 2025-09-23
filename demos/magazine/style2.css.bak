@@ -41,7 +41,7 @@ body {
 	justify-content: center;
 	align-items: center;
     gap: 10px;
-   /* border: 1px solid rgba(0, 0, 0, 0.11);*/
+    border: 1px solid rgba(0, 0, 0, 0.11);
 }
 
 .page img {
@@ -63,7 +63,7 @@ body {
 
 .next-btn {
     position: fixed;
-    bottom: 50%;                                                        
+    bottom: 50%;
     transform: translateX(-50%);
     z-index: 21;
     
@@ -81,7 +81,7 @@ body {
 .next-btn,
 .prev-btn {
   background-color: rgba(118,183,41);
-  border-radius: 100%;
+  border-radius: 50%;
   border: none;
   padding: 8px 16px;
   font-size: 21px;
@@ -99,8 +99,44 @@ body {
   outline: none;
 }
 
-
+.neon-pulse {
+  background: #000;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #5fb230;
+  overflow: visible;
+}
  
+.neon-pulse {
+  background: #000;
+  border: 2px solid #0ff;
+  box-shadow: 0 0 10px #5fb230;
+  overflow: visible;
+}
+ 
+.neon-pulse::before,
+.neon-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #5fb230;
+  border-radius: inherit;
+  animation: pulseOut 2s ease-out infinite;
+  opacity: 0;
+}
+.neon-pulse::after {
+  animation-delay: 1s;
+}
+ 
+@keyframes pulseOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
 
 
 
