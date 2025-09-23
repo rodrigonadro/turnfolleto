@@ -40,8 +40,8 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.11);
+    
+   
 }
 
 .page img {
@@ -52,7 +52,7 @@ body {
 
 .flipbook .page small{
 	font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 
@@ -82,9 +82,10 @@ body {
   background-color: rgba(118,183,41);
   border-radius: 50%;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 17px;
   font-size: 21px;
-
+  color: #E7EBDA;
+ 
 }
 
 .next-btn:hover,
