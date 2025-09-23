@@ -13,18 +13,9 @@
 
 <body>
     <div class="container"> 
-        <div id="divDeslizar" style="width: 100%; background-color: aqua;">
-            <div style="
-                padding: 1px;
-                border-radius: 10px;
-                position: relative;
-                color: white;                              
-                width: 260px;
-                margin-right: -20px;
-                float: right;
-                margin-bottom: 10px;">
-                <label class="lblIndicador" style="font-size: 14px;">Desliza para descubrir más</label>
-            </div>
+        <!-- Header compacto -->
+        <div id="divDeslizar" style="width:100%; text-align:center; background-color:#17407a; padding:5px 0;">
+            <label style="font-size:14px; color:white;">Desliza para descubrir más</label>
         </div>
 
         <div>       
@@ -73,31 +64,34 @@
             let height = 0;
             let display = 'double';
 
-            if (isMobile) {
-                // Ajuste para móviles → ocupa casi toda la pantalla
-                width = viewportWidth * 0.95;
-                height = viewportHeight * 0.95;
-                display = 'single';
-                esWeb = false;
-            } else {
-                // Ajuste para escritorio
-                width = viewportWidth * 0.8;
-                height = (width / 1152) * 752;
-                display = 'double';
-                esWeb = true;
+            const aspectRatioSingle = 840 / 1248;       // proporción 1 página
+            const aspectRatioDouble = (840 * 2) / 1248; // proporción 2 páginas
 
-                // Si el alto es muy grande para la pantalla, recalcula
-                if (height > viewportHeight * 0.85) {
-                    height = viewportHeight * 0.85;
-                    width = (height / 752) * 1152;
+            if (isMobile) {
+                // 📱 Móvil → página individual
+                width = viewportWidth * 0.95;
+                height = width / aspectRatioSingle;
+                display = 'single';
+
+                if (height > viewportHeight * 0.9) {
+                    height = viewportHeight * 0.9;
+                    width = height * aspectRatioSingle;
                 }
+
+            } else {
+                // 💻 Escritorio → dos páginas
+                width = viewportWidth * 0.9;
+                height = width / aspectRatioDouble;
+
+                if (height > viewportHeight * 0.9) {
+                    height = viewportHeight * 0.9;
+                    width = height * aspectRatioDouble;
+                }
+
+                display = 'double';
             }
 
-            return {
-                width: width,
-                height: height,
-                display: display
-            };
+            return { width, height, display };
         }
 
         function resizeMagazine() {
