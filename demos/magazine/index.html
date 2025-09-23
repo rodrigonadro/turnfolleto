@@ -83,9 +83,8 @@
             let display = 'double';
 
             if (isMobile) {
-                // En modo móvil, ajusta el tamaño para que sea de una sola página y ocupe casi todo el ancho de la pantalla
-                width = viewportWidth * 0.7;
-                height = (width) + 250 * (1100 / 1152); // Mantiene la relación de aspecto de las páginas
+                width = viewportWidth * 0.95;   // antes 0.7
+                height = viewportHeight * 0.8;  // usa la altura real de la pantalla
                 display = 'single';
                 esWeb = false;
             } else {

@@ -8,13 +8,15 @@
 }
 
 body {
-    display: grid;
-    place-content: center;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* antes era height fijo */
+    width: 100%;
+    overflow-x: hidden;  /* evita scroll horizontal */
     background: rgba(23,62,118);
 }
+
 
 .flipbook {
     overflow: hidden;
@@ -46,9 +48,10 @@ body {
 
 .page img {
     width: 100%;
-    height: 100%;
-    object-fit: fill;
+    height: auto;      /* antes era 100% fijo */
+    object-fit: contain;  /* antes era fill */
 }
+
 
 .flipbook .page small{
 	font-size: 18px;
@@ -186,15 +189,17 @@ body {
 }
 
 @media (max-width: 568px) {
-
     .next-btn {
-        right: -2%;
+        right: 5%;   /* antes -2% */
+        bottom: 20%; /* súbelo un poco */
     }
 
     .prev-btn {
-        left: 8%;
+        left: 5%;
+        bottom: 20%;
     }
 }
+
 
 
 
