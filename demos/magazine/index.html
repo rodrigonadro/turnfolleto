@@ -14,9 +14,7 @@
 <body>
     <div class="container"> 
         <!-- Header compacto -->
-        <div id="divDeslizar" style="width:100%; text-align:center; background-color:#17407a; padding:5px 0;">
-            <label style="font-size:14px; color:white;">Desliza para descubrir más</label>
-        </div>
+        
 
         <div>       
             <div class="flipbook">
@@ -43,8 +41,12 @@
             </div>
             
             <div class="controls">
-                <button id="prev" class="prev-btn">&#8249;</button>
-                <button id="next" class="next-btn">&#8250;</button>
+                <button id="prev" class="carousel-btn left"></button>
+                <button id="next" class="carousel-btn right"></button>
+            </div>
+            <!-- Texto abajo y centrado -->
+            <div id="divDeslizar" class="indicador">
+                <label>Desliza para descubrir más</label>
             </div>
         </div>
     </div>
