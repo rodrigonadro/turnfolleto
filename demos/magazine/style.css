@@ -78,14 +78,14 @@ body {
   padding: 8px 17px;
   font-size: 21px;
   color: #E7EBDA;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .next-btn:hover,
 .prev-btn:hover {
   background-color:rgba(118,183,41);
   cursor: pointer;
-   opacity: 0.7;
+   opacity: 0.6;
 }
 
 .next-btn:focus,
