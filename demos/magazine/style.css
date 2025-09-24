@@ -26,6 +26,7 @@ body {
     border-radius: 8px; /* opcional: esquinas suaves */
     background: linear-gradient(to bottom, #0d3b82,#0a2b5a);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    margin-top: 20px;   /* espacio arriba del flipbook */
 }
 
 
@@ -181,7 +182,7 @@ body {
 #divDeslizar.indicador {
   width: 100%;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 5px;
   padding: 8px 0;
   font-size: 16px;
   color: white;
