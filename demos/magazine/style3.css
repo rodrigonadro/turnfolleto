@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html, body {
+  margin:0; padding:0;
+  width:100%; height:100%;
+  overflow:hidden;
+  background: rgb(23,62,118);
+  font-family: "Poppins", sans-serif;
+  display:flex; justify-content:center; align-items:center;
+}
+
+.flipbook-container {
+  max-width: min-content;
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+
+.flipbook {
+    overflow: hidden;
+}
+
+.flipbook img {
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+  border:none;
+}
+
+
+.page img {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: fill;
+}
+
+.next-btn, .prev-btn {
+
+    position: fixed;
+    bottom: 50%;
+    z-index: 21;
+    background-color: rgba(118,183,41,0.9);
+    border-radius: 100%;
+    border: none;
+    padding: 8px 16px;
+    font-size: 21px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    z-index:9999; /* mucho mayor que las páginas */
+
+
+}
+
+.next-btn:hover, .prev-btn:hover {
+    background-color: rgba(52,181,157,0.9);
+}
+
+/* posición en escritorio */
+.next-btn { right: 3%; }
+.prev-btn { left: 6%; }
+
+/* Ajustes móviles */
+@media (max-width: 768px) {
+  .flipbook {
+    width: 100vw !important;
+    height: 100vh !important;
+  }
+
+  .page img {
+    width: 100%;
+    height: 100%;
+    max-height: 94%;
+    object-fit: contain; /* sin deformar */
+  }
+
+  .next-btn, .prev-btn {
+    padding: 14px 20px;
+    font-size: 28px;
+  }
+
+  .next-btn { right: 3% !important; opacity:0;}
+  .prev-btn { left: 3% !important; opacity: 0;}
+
+  .flipbook-container.show-controls .next-btn { right:2%; opacity:1; }
+  .flipbook-container.show-controls .prev-btn { left:2%; opacity:1; }
+
+}
+
+/* Indicador de swipe */
+.lblIndicador {
+  position:absolute; top:10px; right:10px;
+  background: rgba(23,62,118,0.95);
+  color:#fff; padding:6px 10px; border-radius:6px;
+  font-size:13px; z-index:9999;
+  opacity:0; transition: all 0.5s ease;
+}
+.flipbook-container.show-controls .lblIndicador { opacity:1; }
