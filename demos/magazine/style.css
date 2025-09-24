@@ -83,7 +83,7 @@ body {
 
 .next-btn:hover,
 .prev-btn:hover {
-  background-color:rgba(118,183,41);
+   background-color: rgba(52,181,157); /* background-color:rgba(118,183,41);*/
   cursor: pointer;
    opacity: 0.6;
 }
