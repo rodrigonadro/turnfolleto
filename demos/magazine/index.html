@@ -12,12 +12,17 @@
 </head>
 
 <body>
+      <div class="logo-container">
+        <!-- Icono esquina izquierda -->
+        <a href="https://www.farmatodo.com.mx/">
+            <img src="image.png" 
+            alt="icono" 
+            class="icono pulse-icon">
+        </a>  
+    </div>
+
     <div class="container"> 
-        <!-- Header compacto 
-        <div class="logo-container">
-            <img src="https://rodrigonadro.github.io/turnfolleto/demos/magazine/logoFT.png" alt="Logo Farmatodo">
-        </div>
--->
+        
         <div>       
             <div class="flipbook">
                 <div><img src="page_1.jpg" alt="Página 1"></div>
@@ -41,6 +46,11 @@
                 <div><img src="page_19.jpg" alt="Página 19"></div>
                 <div><img src="page_20.jpg" alt="Página 20"></div>
             </div>
+
+            
+            <!-- Zonas invisibles para móviles -->
+            <div class="touch-zone left"></div>
+            <div class="touch-zone right"></div>
             
             <div class="controls">
                 <button id="prev" class="prev-btn">&#8249;</button>
@@ -169,6 +179,16 @@
                         break;
                 }
             });
+        });
+
+
+        // Avanzar o retroceder tocando la pantalla
+        document.querySelector(".touch-zone.left").addEventListener("click", function () {
+        $(".flipbook").turn("previous");
+        });
+
+        document.querySelector(".touch-zone.right").addEventListener("click", function () {
+        $(".flipbook").turn("next");
         });
     </script>
 </body>
