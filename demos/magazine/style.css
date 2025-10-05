@@ -292,6 +292,22 @@ body {
     right: 0;
   }
 }
+/* Oculta el título principal para usuarios, visible para motores de búsqueda */
+.main-title-seo {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-
-
+/* Asegura el mismo comportamiento en móviles */
+@media (max-width: 768px) {
+  .main-title-seo {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+}

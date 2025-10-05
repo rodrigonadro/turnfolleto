@@ -12,8 +12,11 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Folleto Promociones Octubre 2025 | Farmatodo México</title>
-    <meta name="description" content="Consulta el folleto digital de promociones de octubre 2025 de Farmatodo. Ofertas exclusivas en salud, belleza y cuidado personal.">    
+    <title>Folleto Promociones Farmatodo México</title>
+    <meta name="description" content="Consulta el folleto digital de promociones de Farmatodo México con las mejores ofertas y descuentos del mes.">
+    <!-- ✅ Aquí se actualizarán dinámicamente -->
+    <meta id="meta-description" name="description" content="" />
+
     <meta name="keywords" content="Farmatodo, promociones, folleto digital, descuentos, ofertas, salud, belleza, farmacia, México" />
     <meta name="author" content="Farmatodo México" />
     <link rel="canonical" href="https://rodrigonadro.github.io/Demo_Carrera/" />
@@ -40,8 +43,37 @@
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="turn.js"></script>
 </head>
+<script>
+  // 🧭 Obtener el nombre del mes actual en español
+  const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+  const hoy = new Date();
+  const mes = meses[hoy.getMonth()];
+  const año = hoy.getFullYear();
 
+  // 🏷️ Generar el nuevo título y descripción dinámicos
+  const nuevoTitulo = `Folleto de Promociones ${mes.charAt(0).toUpperCase() + mes.slice(1)} ${año} | Farmatodo México`;
+  const nuevaDescripcion = `Descubre las promociones y ofertas del folleto Farmatodo de ${mes} ${año}. Productos en salud, belleza y cuidado personal con descuentos exclusivos.`;
+
+  // 🔄 Actualizar el título y la descripción
+  document.title = nuevoTitulo;
+  document.querySelector('meta[name="description"]').setAttribute('content', nuevaDescripcion);
+
+  // 🔹 (Opcional) Actualizar también Open Graph y Twitter
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+
+  if (ogTitle) ogTitle.setAttribute('content', nuevoTitulo);
+  if (ogDesc) ogDesc.setAttribute('content', nuevaDescripcion);
+  if (twTitle) twTitle.setAttribute('content', nuevoTitulo);
+  if (twDesc) twDesc.setAttribute('content', nuevaDescripcion);
+</script>
 <body>
+    <h1 class="main-title-seo">Folleto de Promociones Farmatodo México</h1>
       <div class="logo-container">
         <!-- Icono esquina izquierda -->
         <a href="https://www.farmatodo.com.mx/">
