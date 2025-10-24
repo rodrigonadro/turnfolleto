@@ -1,0 +1,254 @@
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7724TZ2NS6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-7724TZ2NS6');
+</script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Folleto de Promociones | Farmatodo México</title>
+    <meta name="description" content="Consulta el folleto digital de promociones de Farmatodo México con las mejores ofertas y descuentos del mes.">
+    <!-- ✅ Aquí se actualizarán dinámicamente -->
+    <meta id="meta-description" name="description" content="" />
+
+    <meta name="keywords" content="Farmatodo, promociones, folleto digital, descuentos, ofertas, salud, belleza, farmacia, México" />
+    <meta name="author" content="Farmatodo México" />
+    <link rel="canonical" href="https://promociones.farmatodo.com.mx/" />
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:title" content="Folleto Promociones | Farmatodo México" />
+    <meta property="og:description" content="Explora el folleto digital de Farmatodo y aprovecha las mejores ofertas y descuentos del mes." />
+    <meta property="og:image" content="https://gruporfpqa.vteximg.com.br/arquivos/logoftfondo.jpg" />
+    <meta property="og:url" content="https://promociones.farmatodo.com.mx/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Folleto Promociones | Farmatodo México" />
+    <meta name="twitter:description" content="Descubre las promociones más recientes y productos destacados de Farmatodo México." />
+    <meta name="twitter:image" content="https://gruporfpqa.vteximg.com.br/arquivos/logoftfondo.jpg" />
+
+    <!-- Favicon e íconos -->
+    <link rel="icon" href="i_logoFTchico.png" />
+    <link rel="apple-touch-icon" href="i_logoFTchico.png" />
+
+    <!-- Estilos y scripts -->
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="turn.js"></script>
+</head>
+<script>
+  // 🧭 Obtener el nombre del mes actual en español
+  const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+  const hoy = new Date();
+  const mes = meses[hoy.getMonth()];
+  const año = hoy.getFullYear();
+
+  // 🏷️ Generar el nuevo título y descripción dinámicos
+  const nuevoTitulo = `Folleto de Promociones ${mes.charAt(0).toUpperCase() + mes.slice(1)} ${año} | Farmatodo México`;
+  const nuevaDescripcion = ` Aprovecha las mejores promociones de Farmatodo de ${mes} ${año} y descubre grandes descuentos en farmacia, belleza y cuidado personal. Encuentra tus productos favoritos.`;
+
+  // 🔄 Actualizar el título y la descripción
+  document.title = nuevoTitulo;
+  document.querySelector('meta[name="description"]').setAttribute('content', nuevaDescripcion);
+
+  // 🔹 (Opcional) Actualizar también Open Graph y Twitter
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+
+  if (ogTitle) ogTitle.setAttribute('content', nuevoTitulo);
+  if (ogDesc) ogDesc.setAttribute('content', nuevaDescripcion);
+  if (twTitle) twTitle.setAttribute('content', nuevoTitulo);
+  if (twDesc) twDesc.setAttribute('content', nuevaDescripcion);
+</script>
+<body>
+    <h1 class="main-title-seo">Folleto de Promociones y Descuentos de Farmacia Farmatodo</h1>
+      <div class="logo-container">
+        <!-- Icono esquina izquierda -->
+        <a href="https://www.farmatodo.com.mx/">
+            <img src="image.png" 
+            alt="icono" 
+            class="icono pulse-icon">
+        </a>  
+    </div>
+
+    <div class="container"> 
+        
+        <div>       
+            <div class="flipbook">
+                <div><img src="page_1.jpg" alt="Página 1"></div>
+                <div><img src="page_2.jpg" alt="Página 2"></div>
+                <div><img src="page_3.jpg" alt="Página 3"></div>
+                <div><img src="page_4.jpg" alt="Página 4"></div>
+                <div><img src="page_5.jpg" alt="Página 5"></div>
+                <div><img src="page_6.jpg" alt="Página 6"></div>
+                <div><img src="page_7.jpg" alt="Página 7"></div>
+                <div><img src="page_8.jpg" alt="Página 8"></div>
+                <div><img src="page_9.jpg" alt="Página 9"></div>
+                <div><img src="page_10.jpg" alt="Página 10"></div>
+                <div><img src="page_11.jpg" alt="Página 11"></div>
+                <div><img src="page_12.jpg" alt="Página 12"></div>
+                <div><img src="page_13.jpg" alt="Página 13"></div>
+                <div><img src="page_14.jpg" alt="Página 14"></div>
+                <div><img src="page_15.jpg" alt="Página 15"></div>
+                <div><img src="page_16.jpg" alt="Página 16"></div>
+                
+            </div>
+
+            
+            <!-- Zonas invisibles para móviles -->
+            <div class="touch-zone left"></div>
+            <div class="touch-zone right"></div>
+            
+            <div class="controls">
+                <button id="prev" class="prev-btn">&#8249;</button>
+                <button id="next" class="next-btn">&#8250;</button>
+            </div>
+            <!-- Texto abajo y centrado -->
+            <div id="divDeslizar" class="indicador">
+                <label>Click para descubrir más</label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var isMobile = 0;
+        var Paginas1 = 0;
+        var Paginas2 = 0;
+
+        function getMagazineSize() {
+            const viewportWidth = $(window).width();
+            const viewportHeight = $(window).height();
+
+            isMobile = viewportWidth <= 768;
+
+            let width = 0;
+            let height = 0;
+            let display = 'double';
+
+            const aspectRatioSingle = 1024 / 1501;       // proporción 1 página
+            const aspectRatioDouble = (1024 * 2) / 1501; // proporción 2 páginas
+
+            if (isMobile) {
+                // 📱 Móvil → página individual
+                width = viewportWidth * 0.95;
+                height = width / aspectRatioSingle;
+                display = 'single';
+
+                if (height > viewportHeight * 0.9) {
+                    height = viewportHeight * 0.9;
+                    width = height * aspectRatioSingle;
+                }
+
+            } else {
+                // 💻 Escritorio → dos páginas
+                width = viewportWidth * 0.9;
+                height = width / aspectRatioDouble;
+
+                if (height > viewportHeight * 0.9) {
+                    height = viewportHeight * 0.9;
+                    width = height * aspectRatioDouble;
+                }
+
+                display = 'double';
+            }
+
+            return { width, height, display };
+        }
+
+        function resizeMagazine() {
+            const newSize = getMagazineSize();
+            $('.flipbook').turn('size', newSize.width, newSize.height);
+            $('.flipbook').turn('display', newSize.display);
+        }
+
+        $(window).ready(function () {
+            const initialSize = getMagazineSize();
+            
+            $('.flipbook').turn({
+                autoCenter: true,
+                duration: 900,
+                width: initialSize.width,
+                height: initialSize.height,
+                display: initialSize.display,         
+                when: {
+                    turned: function(e, page) {
+                        Paginas1 = $(this).turn('view')[0];
+                        Paginas2 = $(this).turn('view')[1];
+
+                        if (Paginas1 == 0 || Paginas1 == 1) {
+                            document.getElementById('prev').style.visibility='hidden';
+                        } else {
+                            document.getElementById('prev').style.visibility='visible';
+                        }
+
+                        if (Paginas1 == 20) {
+                            document.getElementById('next').style.visibility='hidden';
+                        } else {
+                            document.getElementById('next').style.visibility='visible';
+                        }
+                    }
+                }
+            });
+
+            $(window).bind('resize', function () {           
+                resizeMagazine();
+            });
+
+            $("#prev").on("click", function () {
+                $(".flipbook").turn("previous");
+            });
+
+            $("#next").on("click", function () {
+                $(".flipbook").turn("next");
+            });
+
+            const totalPages = $(".flipbook").turn("pages");
+            $("#page-info").text("1 / " + totalPages);
+
+            $(".flipbook").bind("turned", function (event, page) {
+                $("#page-info").text(page + " / " + totalPages);
+            });
+
+            $(window).bind('keydown', function (e) {
+                const totalPages = $(".flipbook").turn("pages");
+                switch (e.key) {
+                    case "ArrowLeft":
+                        $(".flipbook").turn("previous");
+                        break;
+                    case "ArrowRight":
+                        $(".flipbook").turn("next");
+                        break;
+                    case "Home":
+                        $(".flipbook").turn("page", 1);
+                        break;
+                    case "End":
+                        $(".flipbook").turn("page", totalPages);
+                        break;
+                }
+            });
+        });
+
+
+        // Avanzar o retroceder tocando la pantalla
+        document.querySelector(".touch-zone.left").addEventListener("click", function () {
+        $(".flipbook").turn("previous");
+        });
+
+        document.querySelector(".touch-zone.right").addEventListener("click", function () {
+        $(".flipbook").turn("next");
+        });
+    </script>
+</body>
+</html>
